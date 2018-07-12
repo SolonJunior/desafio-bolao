@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../WEB-INF/templates/page.xhtml"
+	 xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+		<ui:define name="content">
+<h:head></h:head>
+<h:body>
+	<h1>Cadastro de Partidas</h1>
+
+	<h:form id="frmPartida">
+		<p:messages infoClass="infoMessage" errorClass="errorMessage"
+			autoUpdate="true" />
+			
+		<h:outputText value="Time 1: " />
+			<p:inputText value="#{partidaMB.partida.time1}" style="margin-right: 20px;"/>
+		<h:outputText value="Time 2: "  />
+			<p:inputText value="#{partidaMB.partida.time2}" style="margin-right: 20px;"/>
+		<p:commandButton action="#{partidaMB.salvar}" value="Salvar"
+			update="frmPartida" style="margin-bottom: 15px;"/>    
+
+		<p:dataTable id="dtPartida" value="#{partidaMB.partidas}"
+			var="partida" style="width: 60%;">
+
+			<p:column headerText="Time 1" style="text-align: center;">
+				<h:outputText value="#{partida.time1}" />
+			</p:column>
+
+			<p:column headerText="Time 2" style="text-align: center;">
+				<h:outputText value="#{partida.time2}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+</h:body>
+
+</ui:define>
+</ui:composition>

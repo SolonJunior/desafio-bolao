@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../WEB-INF/templates/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:head></h:head>
+		<h:body>
+			<h1>Consulta de Palpites</h1>
+
+			<h:form id="frmPalpite">
+				<p:messages infoClass="infoMessage" errorClass="errorMessage"
+					autoUpdate="true" />
+
+
+				<p:dataTable id="dtUsuario" value="#{consultaPalpitesMB.usuarioList}"
+					var="usuario" style="text-align: center; width: 60%;">
+
+					<p:column headerText="Usuário">
+						<h:outputText value="#{usuario.name}" />
+					</p:column>
+
+					<p:column headerText="Palpites">
+						<p:commandButton value="Palpites" oncomplete="PF('dlg').show()" update="frmPalpite:dtPalpites" 
+							style="margin-bottom: 15px;">
+							<f:setPropertyActionListener target="#{consultaPalpitesMB.usuario}"
+								value="#{usuario}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+		
+				<p:dialog header="Palpites" widgetVar="dlg">
+					<p:dataTable id="dtPalpites" value="#{consultaPalpitesMB.usuario.palpites}" var="palpites" style="text-align: center;">
+					
+        				<p:column headerText="Time 1">
+							<h:outputText value="#{palpites.partida.time1}" />
+						</p:column>
+						
+						<p:column headerText="Palpite Time 1">
+							<h:outputText value="#{palpites.palpiteTime1}" />
+						</p:column>
+						
+						<p:column headerText="Palpite Time 2">
+							<h:outputText value="#{palpites.palpiteTime2}" />
+						</p:column>
+						
+						<p:column headerText="Time 2">
+							<h:outputText value="#{palpites.partida.time2}" />
+						</p:column>
+						
+    				</p:dataTable>  
+				</p:dialog> 
+
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

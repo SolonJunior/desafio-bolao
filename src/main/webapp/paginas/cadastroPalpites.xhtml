@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../WEB-INF/templates/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:head></h:head>
+		<h:body>
+			<h1>Cadastro de Palpites</h1>
+
+			<h:form id="frmPalpite">
+				<p:messages infoClass="infoMessage" errorClass="errorMessage"
+					autoUpdate="true" />
+
+
+				<p:dataTable id="dtPartida" value="#{palpitesMB.partidas}"
+					var="partida" style="text-align: center; width: 60%;">
+
+					<p:column headerText="Time 1">
+						<h:outputText value="#{partida.time1}" />
+					</p:column>
+
+					<p:column headerText="Palpite Time 1">
+						<p:inputText value="#{partida.palpiteTime1}" style="width: 50px"/>
+					</p:column>
+
+					<p:column headerText="Palpite Time 2">
+						<p:inputText value="#{partida.palpiteTime2}" style="width: 50px"/>
+					</p:column>
+
+					<p:column headerText="Time 2">
+						<h:outputText value="#{partida.time2}" />
+					</p:column>
+
+					<p:column headerText="Salvar">
+						<p:commandButton action="#{palpitesMB.salvar}" value="Salvar"
+							style="margin-bottom: 15px;">
+							<f:setPropertyActionListener target="#{palpitesMB.usuario}"
+								value="#{loginMB.usuario}" />
+							<f:setPropertyActionListener target="#{palpitesMB.partida}"
+								value="#{partida}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

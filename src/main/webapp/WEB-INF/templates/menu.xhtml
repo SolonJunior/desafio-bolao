@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:form>
+
+		<p:menubar style="width: 60%;">
+			<p:submenu label="Cadastro">
+				<p:menuitem value="Partida" url="/paginas/cadastroPartidas.xhtml" rendered="#{loginMB.usuario.admin}"/>
+				<p:menuitem value="Palpites" url="/paginas/cadastroPalpites.xhtml" rendered="#{!loginMB.usuario.admin}"/>
+				<p:menuitem value="Resultado" url="/paginas/cadastroResultado.xhtml" rendered="#{loginMB.usuario.admin}"/>
+			</p:submenu>
+			<p:submenu label="Consulta" rendered="#{loginMB.usuario.admin}">
+				<p:menuitem value="Palpites" url="/paginas/consultaPalpites.xhtml" />
+			</p:submenu>
+			<f:facet name="options">
+            	<p:commandButton value="Logout"  action="#{loginMB.logout}"/>
+        	</f:facet>
+		</p:menubar>
+		
+		
+	</h:form>
+</f:view>
+</html>
